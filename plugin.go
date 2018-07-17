@@ -21,10 +21,12 @@ type Plugin struct {
 	Name       string
 	Version    string
 	Sources    string
+	GithubOauth string
+	GithubRepository string
+	GithubPullRequest string
 	Inclusions string
 	Exclusions string
 	Language   string
-	Profile    string
 	Encoding   string
 	LcovPath   string
 	Debug      bool

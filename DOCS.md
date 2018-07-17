@@ -11,11 +11,13 @@ The following parameters are used to configure the plugin:
 * **key** - Sonar project key. Defaults to ORG:REPO_NAME - sonar.projectKey property 
 * **name** - Sonar project name. Defaults to ORG/REPO_NAME - sonar.projectName property
 * **version** - Sonar project version - sonar.projectName property
+* **github_oauth** - Sonar Github plugin - sonar.github.oauth property
+* **github_repository** - Sonar Github plugin. Defaults to ORG/REPO_NAME - sonar.github.repository property
+* **github_pull_request** - Sonar Github plugin. Defaults to Drone's pull request number - sonar.github.pullRequest property
 * **sources** - Sonar project sources paths - sonar.sources property
 * **inclusions** - Sonar project sources inclusions - sonar.inclusions property
 * **exclusions** - Sonar project sources exclusions - sonar.exclusions property
 * **language** - Sonar project language. Defaults to 'js' - sonar.language property
-* **profile** - Sonar project profile. Defaults to 'node' - sonar.profile property
 * **encoding** - Sonar project encoding. Defaults to 'UTF-8' - sonar.sourceEncoding property
 * **lcovpath** - Sonar project lcov coverage file. Defaults to 'test/coverage/reports/lcov.info' - sonar.javascript.lcov.reportPath property
 
@@ -25,6 +27,7 @@ The following secret values can be set to configure the plugin.
 * **SONAR_HOST** - corresponds to **host**
 * **SONAR_LOGIN** - corresponds to **login**
 * **SONAR_PASSWORD** - corresponds to **password**
+* **SONAR_GITHUB_OAUTH** - corresponds to **github_oauth**
 
 It is highly recommended to put the **SONAR_LOGIN** and
 **SONAR_PASSWORD** into a secret so it is

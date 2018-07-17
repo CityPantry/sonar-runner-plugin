@@ -72,6 +72,21 @@ func main() {
 			EnvVar: "PLUGIN_VERSION,DRONE_BUILD_NUMBER",
 		},
 		cli.StringFlag{
+			Name:	"github.oauth",
+			Usage:	"Github Personal Access Token",
+			EnvVar: "SONAR_GITHUB_OAUTH,PLUGIN_GITHUB_OAUTH",
+		},
+		cli.StringFlag{
+			Name:	"github.repository",
+			Usage:	"Github Repository e.g. Org/repo",
+			EnvVar: "PLUGIN_GITHUB_REPOSITORY,DRONE_REPO",
+		},
+		cli.StringFlag{
+			Name:	"github.pullrequest",
+			Usage:  "Github Pull Request",
+			EnvVar: "PLUGIN_GITHUB_PULL_REQUEST,DRONE_PULL_REQUEST",
+		},
+		cli.StringFlag{
 			Name:   "sources",
 			Usage:  "Project sources to scan",
 			EnvVar: "PLUGIN_SOURCES",
@@ -91,12 +106,6 @@ func main() {
 			Usage:  "Project language",
 			EnvVar: "PLUGIN_LANGUAGE",
 			Value:  "js",
-		},
-		cli.StringFlag{
-			Name:   "profile",
-			Usage:  "Project profile",
-			EnvVar: "PLUGIN_PROFILE",
-			Value:  "node",
 		},
 		cli.StringFlag{
 			Name:   "encoding",
@@ -119,7 +128,7 @@ func main() {
 			Name:   "allowed.branch.regex",
 			Usage:  "A regex to check against running branch to see if analysis is allowed",
 			EnvVar: "PLUGIN_ALLOWED_BRANCH_REGEX",
-			Value:  `(^master$|^develop$|^release\/+)`,
+			Value:  `.*`,
 		},
 	}
 
@@ -138,11 +147,13 @@ func run(c *cli.Context) error {
 		Key:        c.String("key"),
 		Name:       c.String("name"),
 		Version:    c.String("version"),
+		GithubOauth: c.String("github.oauth"),
+		GithubRepository: c.String("github.repository"),
+		GithubPullRequest: c.String("github.pullrequest"),
 		Sources:    c.String("sources"),
 		Inclusions: c.String("inclusions"),
 		Exclusions: c.String("exclusions"),
 		Language:   c.String("language"),
-		Profile:    c.String("profile"),
 		Encoding:   c.String("encoding"),
 		LcovPath:   c.String("lcovpath"),
 		Debug:      c.Bool("debug"),
